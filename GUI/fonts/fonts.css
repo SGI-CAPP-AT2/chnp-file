@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre&family=Inconsolata:wght@500&display=swap');
+.default-fonts *:not(g-icon){
+    font-family: monospace;
+}
+.segoeUI-fonts *:not(g-icon){
+    font-family: 'Segoe UI';
+}
+.inconsolata-google-fonts *:not(g-icon){
+    font-family: 'Inconsolata';
+}
+.gemunuLibre-google-fonts *:not(g-icon){
+    font-family: 'Gemunu Libre';
+}

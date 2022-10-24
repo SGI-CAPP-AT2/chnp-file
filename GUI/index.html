@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>READER/EDITOR: .chnp-session-json file</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="ui.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="fonts/fonts.css">
+</head>
+<body>
+    <div class="ui">
+        <nav style="border-bottom: 1px solid black;" class="nav nav-pills flex-column flex-sm-row">
+        chnp-session-json file Read & Write
+        </nav>
+        <div class="main">
+            <div class="menuForGlobal">
+                <div class="opt">
+                    <g-icon center middle>
+                        info
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center middle>
+                        drive_file_rename_outline
+                    </g-icon>
+                </div>
+                <div onclick = "printOP()" class="opt">
+                    <g-icon center middle>
+                        print
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center middle>
+                        branding_watermark
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center middle>
+                        search
+                    </g-icon>
+                </div>
+                <div class="opt bottom">
+                    <span center middle id="index"></span>
+                </div>
+                <div onclick="previous(this)" class="opt">
+                    <g-icon center middle>
+                        navigate_before
+                    </g-icon>
+                </div>
+            </div>
+            <div class="view">
+                
+            </div>
+            <div class="menuForLocal">
+                <div class="opt">
+                    <g-icon center="" middle="">
+                        file_copy
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center="" middle="">
+                        edit
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center="" middle="">
+                        file_download
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center="" middle="">
+                        delete
+                    </g-icon>
+                </div>
+                <div class="opt">
+                    <g-icon center middle>
+                        branding_watermark
+                    </g-icon>
+                </div>
+                <div onclick="next()" class="opt bottom">
+                    <g-icon center middle>
+                        navigate_next
+                    </g-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ondragleave="handleDragLeave(event)" ondragover="handleDragOver(event)" ondrop="handleDrop(event)" onclick="importFile()" class="upload">
+        <g-icon middle center>upload</g-icon>
+    </div>
+    <script>
+        if(!localStorage.setFont)localStorage.setFont="default-fonts";
+        document.body.classList.add(localStorage.setFont);
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="../lib/Emmet.min.js"></script>
+    <script src="../lib/API.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "inputValues": {
+    "title": "• PR11.01 single inheritance Student => Marks",
+    "code": "#include<iostream>\n#include<conio.h>\nusing namespace std;\n// single inheritance Student => Marks\nclass Student\n{\n    int roll_no;\n    char name[20];\n    protected:\n        void acceptRN()\n        {\n            cout<<\" Enter Roll no: \";\n            cin>>roll_no;\n            cout<<\" Enter Name: \";\n            cin>>name;\n        }\n        void displayRN()\n        {\n            cout<<\"Student Information:\"<<endl\n                <<\" Name: \"<<name<<endl\n                <<\" Roll no: \"<<roll_no<<endl;\n        }\n};\nclass Marks:public Student\n{\n    float m1,m2,m3;\n    public: \n        void accept()\n        {\n            acceptRN();\n            cout<<\" Enter marks of m1,m2 & m3 respectively: \";\n            cin>>m1>>m2>>m3;\n        }\n        void display()\n        {\n            displayRN();\n            cout<<\"Marks: \"<<endl\n                <<\" M1: \"<<m1<<endl\n                <<\" M2: \"<<m2<<endl\n                <<\" M3: \"<<m3<<endl\n                <<\" __________\"<<endl\n                <<\" Total: \"<<m1+m2+m3<<endl\n                <<\" Avg: \"<<(m1+m2+m3)/3<<endl;\n        }\n};\nint main()\n{\n    Marks s1;\n        cout<<\"Enter Information: \"<<endl;\n            s1.accept();\n        cout<<\"Result: \"<<endl;\n            s1.display();\n    getch();\n    return 0;\n}",
+    "output": "Enter Information: \n Enter Roll no: 20\n Enter Name: Whomever\n Enter marks of m1,m2 & m3 respectively: 20 19 16\nResult: \nStudent Information:\n Name: Whomever\n Roll no: 20\nMarks: \n M1: 20\n M2: 19\n M3: 16\n __________\n Total: 55\n Avg: 18.3333",
+    "filename": "labs\\11\\01.cpp",
+    "rtf": "\n            Paste Your Image Here",
+    "watermark": "SYCO06 (gcc version 11.2.0)",
+    "rtfBool": "false"
+  },
+  "printList": [
+    {
+      "title": "• PR11.02: single Inheritance Employee => Salary",
+      "code": "#include<iostream>\n#include<conio.h>\nusing namespace std;\n// single Inheritance Employee => Salary\nclass Employee\n{\n    int emp_no;\n    char emp_name[20],emp_designation[20];\n    protected:\n        void accept()\n        {\n            cout<<\" Enter Employee No.: \";\n            cin>>emp_no;\n            cout<<\" Enter Name of Employee: \";\n            cin>>emp_name;\n            cout<<\" Enter Employee Designation: \";\n            cin>>emp_designation;\n        }\n        void display()\n        {\n            cout<<\" Name: \"<<emp_name<<endl\n                <<\" Emp No: \"<<emp_no<<endl\n                <<\" Designation: \"<<emp_designation<<endl;\n        }\n};\nclass Salary:public Employee\n{\n    float da,hra,basic;\n    public:\n        void accept()\n        {\n            Employee::accept();\n            cout<<\" Enter DA(%): \";\n            cin>>da;\n            cout<<\" Enter HRA(%): \";\n            cin>>hra;\n            cout<<\" Enter Basic Salary(₹): \";\n            cin>>basic;\n        }\n        void display()\n        {\n            Employee::display();\n            cout<<\" Basic Salary: \"<<basic<<endl\n                <<\" Gross Salary: \"<<basic+(basic*da/100)+(basic*hra/100)<<endl;\n        }\n};\nint main()\n{\n    Salary e1;\n        cout<<\"Enter Information: \"<<endl;\n            e1.accept();\n        cout<<\"Result: \"<<endl;\n            e1.display();\n    getch();\n    return 0;\n}",
+      "output": "Enter Information: \n Enter Employee No.: 344\n Enter Name of Employee: Whomever\n Enter Employee Designation: SDE_1\n Enter DA(%): 30\n Enter HRA(%): 25\n Enter Basic Salary(₹): 25000\nResult:\n Name: Whomever\n Emp No: 344\n Designation: SDE_1\n Basic Salary: 25000\n Gross Salary: 38750",
+      "filename": "labs\\11\\02.cpp",
+      "rtf": "\n            Paste Your Image Here",
+      "watermark": "SYCO06 (gcc version 11.2.0)",
+      "rtfBool": "false"
+    },
+    {
+      "title": "• PR11.01: single inheritance Student => Marks",
+      "code": "#include<iostream>\n#include<conio.h>\nusing namespace std;\n// single inheritance Student => Marks\nclass Student\n{\n    int roll_no;\n    char name[20];\n    protected:\n        void acceptRN()\n        {\n            cout<<\" Enter Roll no: \";\n            cin>>roll_no;\n            cout<<\" Enter Name: \";\n            cin>>name;\n        }\n        void displayRN()\n        {\n            cout<<\"Student Information:\"<<endl\n                <<\" Name: \"<<name<<endl\n                <<\" Roll no: \"<<roll_no<<endl;\n        }\n};\nclass Marks:public Student\n{\n    float m1,m2,m3;\n    public: \n        void accept()\n        {\n            acceptRN();\n            cout<<\" Enter marks of m1,m2 & m3 respectively: \";\n            cin>>m1>>m2>>m3;\n        }\n        void display()\n        {\n            displayRN();\n            cout<<\"Marks: \"<<endl\n                <<\" M1: \"<<m1<<endl\n                <<\" M2: \"<<m2<<endl\n                <<\" M3: \"<<m3<<endl\n                <<\" __________\"<<endl\n                <<\" Total: \"<<m1+m2+m3<<endl\n                <<\" Avg: \"<<(m1+m2+m3)/3<<endl;\n        }\n};\nint main()\n{\n    Marks s1;\n        cout<<\"Enter Information: \"<<endl;\n            s1.accept();\n        cout<<\"Result: \"<<endl;\n            s1.display();\n    getch();\n    return 0;\n}",
+      "output": "Enter Information: \n Enter Roll no: 20\n Enter Name: Whomever\n Enter marks of m1,m2 & m3 respectively: 20 19 16\nResult: \nStudent Information:\n Name: Whomever\n Roll no: 20\nMarks: \n M1: 20\n M2: 19\n M3: 16\n __________\n Total: 55\n Avg: 18.3333",
+      "filename": "labs\\11\\01.cpp",
+      "rtf": "\n            Paste Your Image Here",
+      "watermark": "SYCO06 (gcc version 11.2.0)",
+      "rtfBool": "false"
+    }
+  ],
+  "name": "OOP CODES 11",
+  "time": 1666433987037
+}
