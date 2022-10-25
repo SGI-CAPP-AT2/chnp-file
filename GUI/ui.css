@@ -173,10 +173,16 @@ div.centerContaint span{
 }
 div.window{
   text-align: left;
+  border: 1px solid black;
+  padding: 5px;
 }
 *[contenteditable]{
   outline: none;
 }
 *[contenteditable]:focus{
   outline: 3px dashed red;
+}
+nav{
+  background-color: rgba(0, 0, 0, 0.254);
+  color: rgb(0, 0, 0);
 }

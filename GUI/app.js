@@ -196,9 +196,9 @@ renameSession=()=>{
 },
 showDetails=()=>{
     let text = "", details=chnpObject.getDetails();
-    text+=details.name+"<br>";
-    text+=details.lengthPrint+"<br>";
-    text+=details.date+"<br>";
+    text+="<strong>Name: </strong>"+details.name+"<br>";
+    text+="<strong>Prints: </strong>"+details.lengthPrint+"<br>";
+    text+="<strong>Date: </strong>"+details.date+"<br>";
     text+="<small>Click Anywhere to close</small>"
     new DynamicWindow(text);
 },
@@ -242,8 +242,8 @@ class DynamicWindow
         document.body.append(this.win);
         this.win.onclick=this.destroy;
     }
-    destroy(e){
-       e.target.remove();
+    destroy(){
+       $select("div.screenBlock").remove();
     }
 }
 var keyMap={
