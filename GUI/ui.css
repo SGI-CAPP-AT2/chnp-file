@@ -174,3 +174,9 @@ div.centerContaint span{
 div.window{
   text-align: left;
 }
+*[contenteditable]{
+  outline: none;
+}
+*[contenteditable]:focus{
+  outline: 3px dashed red;
+}

@@ -84,6 +84,7 @@ setUpPage=json=>{
         </div></div>
         <div class="mrg-20"></div>
         `;
+        $select("#index").innerText=current+1;
         $select(".view").innerHTML=html;
 },
 sanitize=str=>str.replaceAll("<","&lt;"),
@@ -109,17 +110,6 @@ printOP=(list)=>{
         window.location.assign(
             "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true"
         )
-    }
-},
-changeWatermark=(pageNo)=>{
-    let watermarkObject = new DynamicInput("Enter New Watermark ...");
-    watermarkObject.onDone=(val)=>{
-        watermarkObject.destroy();
-        chnpObject.setWMof({
-            index:pageNo,
-            newWM:val
-        }) 
-        setUpPage(chnpObject.getListAt(current));
     }
 },
 chnageAllWatermarks=()=>{
@@ -162,6 +152,10 @@ outputBlockObjects=()=>{
         {
             key:"output",
             obj:$select("#pageOutput p.output")
+        },
+        {
+            key:"watermark",
+            obj:$select("#pageOutput .wm span")
         }
     ]
 },state,
@@ -207,7 +201,19 @@ showDetails=()=>{
     text+=details.date+"<br>";
     text+="<small>Click Anywhere to close</small>"
     new DynamicWindow(text);
-};
+},
+saveAtThisState=()=>{
+    let url = getObjectString(chnpObject.getState());
+    let a = document.createElement("a");
+    a.href=url;
+    a.download=chnpObject.getName()+".chnp-session-json"
+    a.href=url;
+    a.click();
+},
+getObjectString = string =>{
+    return window.URL.createObjectURL(new Blob([string],{type:'text/json'}))
+}
+;
 class DynamicInput
 {
     constructor(param){

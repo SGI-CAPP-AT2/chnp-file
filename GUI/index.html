@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="ui">
-        <nav id="title" style="border-bottom: 1px solid black;" class="nav nav-pills flex-column flex-sm-row">
+        <nav id="title" style="border-bottom: 1px solid black; padding: 0 3px;" class="nav nav-pills flex-column flex-sm-row">
         chnp-session-json file Read & Write
         </nav>
         <div class="main">
@@ -37,7 +37,12 @@
                         branding_watermark
                     </g-icon>
                 </div>
-                <div class="opt bottom">
+                <div onclick="saveAtThisState()" class="opt bottom">
+                    <g-icon center middle>
+                        save
+                    </g-icon>
+                </div>
+                <div class="opt">
                     <span center middle id="index"></span>
                 </div>
                 <div onclick="previous(this)" class="opt">
@@ -63,11 +68,6 @@
                 <div onclick="deletePage()" class="opt">
                     <g-icon center="" middle="">
                         delete
-                    </g-icon>
-                </div>
-                <div class="opt">
-                    <g-icon onclick="changeWatermark(current)" center middle>
-                        branding_watermark
                     </g-icon>
                 </div>
                 <div onclick="next()" class="opt bottom">
