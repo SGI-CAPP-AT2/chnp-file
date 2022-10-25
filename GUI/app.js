@@ -86,16 +86,16 @@ setUpPage=json=>{
         `;
         $select("#index").innerText=current+1;
         $select(".view").innerHTML=html;
-},
+},state,
 sanitize=str=>str.replaceAll("<","&lt;"),
 next=()=>{
-    if(chnpObject.isListAt(current+1)==true){
+    if(chnpObject.isListAt(current+1)==true&&state!="edit"){
         current++;
         setUpPage(chnpObject.getListAt(current));
     }
 },
 previous=()=>{
-    if(chnpObject.isListAt(current-1)==true){
+    if(chnpObject.isListAt(current-1)==true&&state!="edit"){
         current--;
         setUpPage(chnpObject.getListAt(current));
     }
@@ -158,7 +158,7 @@ outputBlockObjects=()=>{
             obj:$select("#pageOutput .wm span")
         }
     ]
-},state,
+},
 editCurrentPage=(button)=>{
     if(state!="edit"){
         for(let item of outputBlockObjects()){
