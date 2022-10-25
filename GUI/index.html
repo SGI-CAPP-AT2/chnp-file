@@ -12,34 +12,29 @@
 </head>
 <body>
     <div class="ui">
-        <nav style="border-bottom: 1px solid black;" class="nav nav-pills flex-column flex-sm-row">
+        <nav id="title" style="border-bottom: 1px solid black;" class="nav nav-pills flex-column flex-sm-row">
         chnp-session-json file Read & Write
         </nav>
         <div class="main">
             <div class="menuForGlobal">
                 <div class="opt">
-                    <g-icon center middle>
+                    <g-icon onclick="showDetails()" center middle>
                         info
                     </g-icon>
                 </div>
-                <div class="opt">
+                <div onclick="renameSession()" class="opt">
                     <g-icon center middle>
                         drive_file_rename_outline
                     </g-icon>
                 </div>
-                <div onclick = "printOP()" class="opt">
+                <div onclick = "printOP(chnpObject.getPrintList())" class="opt">
                     <g-icon center middle>
                         print
                     </g-icon>
                 </div>
-                <div class="opt">
+                <div onclick="chnageAllWatermarks()" class="opt">
                     <g-icon center middle>
                         branding_watermark
-                    </g-icon>
-                </div>
-                <div class="opt">
-                    <g-icon center middle>
-                        search
                     </g-icon>
                 </div>
                 <div class="opt bottom">
@@ -55,28 +50,23 @@
                 
             </div>
             <div class="menuForLocal">
-                <div class="opt">
-                    <g-icon center="" middle="">
-                        file_copy
-                    </g-icon>
-                </div>
-                <div class="opt">
+                <div onclick="editCurrentPage(this)" class="opt">
                     <g-icon center="" middle="">
                         edit
                     </g-icon>
                 </div>
-                <div class="opt">
+                <div onclick="printOP([chnpObject.getPrintList()[current]])" class="opt">
                     <g-icon center="" middle="">
                         file_download
                     </g-icon>
                 </div>
-                <div class="opt">
+                <div onclick="deletePage()" class="opt">
                     <g-icon center="" middle="">
                         delete
                     </g-icon>
                 </div>
                 <div class="opt">
-                    <g-icon center middle>
+                    <g-icon onclick="changeWatermark(current)" center middle>
                         branding_watermark
                     </g-icon>
                 </div>

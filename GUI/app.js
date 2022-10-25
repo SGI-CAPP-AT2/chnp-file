@@ -28,6 +28,8 @@ readFile = ev =>{
         $select(".upload").style.display="none";
         importFile=()=>{};
         setUpPage(chnpObject.getListAt(current));
+        let name = chnpObject.getDetails().name;
+        $select("nav#title").innerText=name;
     }catch(e){
         $select("div.upload").innerHTML=`<g-icon middle center>upload</g-icon>`;
         $select(".upload g-icon").innerText="warning";
@@ -47,7 +49,7 @@ handleDragLeave=ev=>{
 },
 handleDrop=ev=>{
     ev.preventDefault();
-    if(ev.dataTransfer.items){
+    if(ev.dataTransfer.items&&[...ev.dataTransfer.items][0].getAsFile()!=null){
         let name = [...ev.dataTransfer.items][0].getAsFile().name, ext = name.split(".")[name.split(".").length-1];
         if(ext=="chnp-session-json"){
             handleFileChange({target:{files:[[...ev.dataTransfer.items][0].getAsFile()]}})
@@ -61,7 +63,7 @@ handleDrop=ev=>{
 setUpPage=json=>{
         let cq = json;
         if(cq.rtfBool=="true"){rtfDisplay="inline"}else{rtfDisplay="none"}
-        html=`<div style="margin:0 20px;">
+        html=`<div id="pageOutput" style="margin:0 20px;">
         <b>
         ${sanitize(cq.title)}
         </b>
@@ -97,19 +99,147 @@ previous=()=>{
         setUpPage(chnpObject.getListAt(current));
     }
 },
-printOP=()=>{
-    let list = [...chnpObject.getPrintList()];
+printOP=(list)=>{
     let i = 0;
     if(list.length!=0){
-    list.forEach(el=>{
-        sessionStorage["l-"+i++]=JSON.stringify(el);
-    })
-    sessionStorage.list=i;
-    window.location.assign(
-        "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true"
-    )
+        list.forEach(el=>{
+            sessionStorage["l-"+i++]=JSON.stringify(el);
+        })
+        sessionStorage.list=i;
+        window.location.assign(
+            "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true"
+        )
+    }
+},
+changeWatermark=(pageNo)=>{
+    let watermarkObject = new DynamicInput("Enter New Watermark ...");
+    watermarkObject.onDone=(val)=>{
+        watermarkObject.destroy();
+        chnpObject.setWMof({
+            index:pageNo,
+            newWM:val
+        }) 
+        setUpPage(chnpObject.getListAt(current));
+    }
+},
+chnageAllWatermarks=()=>{
+    let watermarkObject = new DynamicInput("Enter New Watermark ...");
+    watermarkObject.onDone=(val)=>{
+        watermarkObject.destroy();
+        chnpObject.setWM(val) 
+        setUpPage(chnpObject.getListAt(current));
+    }
+},
+deletePage=()=>{
+    chnpObject.deleteListAt(current);
+    console.log(chnpObject)
+    if(current>=0&&current<chnpObject.getPrintList().length-1){
+        setUpPage(chnpObject.getListAt(current));
+    }else{
+        try{
+            current=0;
+            setUpPage((chnpObject.getListAt(0)))
+        }catch(e){
+            $select(".view").innerHTML=Emmet("div.centerContaint>span{No Pages Found in file}",true);
+        }
+    }
+},
+// pageOutput id 
+outputBlockObjects=()=>{
+    return [
+        {
+            key:"title",
+            obj:$select("#pageOutput b")
+        },
+        {
+            key:"filename",
+            obj:$select("#pageOutput span.filename")
+        },
+        {
+            key:"code",
+            obj:$select("#pageOutput p.input")
+        },
+        {
+            key:"output",
+            obj:$select("#pageOutput p.output")
+        }
+    ]
+},state,
+editCurrentPage=(button)=>{
+    if(state!="edit"){
+        for(let item of outputBlockObjects()){
+            item.obj.contentEditable=true;
+        }
+        state="edit";
+        button.innerHTML=`
+            <g-icon center="" middle="">
+                done
+            </g-icon>
+        `;
+    }else{
+        let change={};
+        for(let item of outputBlockObjects()){;
+            item.obj.contentEditable=false;
+            change[item.key]=item.obj.innerText;
+        }
+        chnpObject.changePrintListAt(current,change);
+        state="";
+        button.innerHTML=`
+            <g-icon center="" middle="">
+                edit
+            </g-icon>
+        `;
+    }
+},
+renameSession=()=>{
+    let newNameObj = new DynamicInput("Enter New Session Name");
+    newNameObj.onDone=(val)=>{
+        chnpObject.renameSession(val);
+        newNameObj.destroy();
+        let name = chnpObject.getDetails().name;
+        $select("nav#title").innerText=name;
+    }
+},
+showDetails=()=>{
+    let text = "", details=chnpObject.getDetails();
+    text+=details.name+"<br>";
+    text+=details.lengthPrint+"<br>";
+    text+=details.date+"<br>";
+    text+="<small>Click Anywhere to close</small>"
+    new DynamicWindow(text);
+};
+class DynamicInput
+{
+    constructor(param){
+        if(!$select("div.dynamicInput")){
+            let inputBar = Emmet("div.screenBlock+div.dynamicInput>input.form-control+button.btn.btn-success{done}");
+            console.log(inputBar)
+            document.body.append(...inputBar);
+            this.onDone=val=>{};
+            $select("div.dynamicInput input").placeholder=param;
+            $select("div.dynamicInput input").focus();
+            $select("div.dynamicInput button").onclick=()=>{
+                this.onDone($select("div.dynamicInput input").value);
+            }
+        }
+    }
+    destroy=()=>{
+        [$select("div.screenBlock"),$select("div.dynamicInput")].forEach(e=>{
+            e.remove();
+        })
     }
 };
+class DynamicWindow
+{
+    constructor(text){
+        this.win = Emmet("div.screenBlock > div.window{"+text+"}");
+        document.body.append(this.win);
+        this.win.onclick=this.destroy;
+    }
+    destroy(e){
+       e.target.remove();
+    }
+}
 var keyMap={
     ArrowRight:next,
     ArrowLeft:previous
@@ -118,4 +248,4 @@ window.addEventListener("keyup",ev=>{
     ev.preventDefault();
     if(keyMap[ev.key]) keyMap[ev.key]();
 })
-$select("div.main").style.height="calc(100vw - "+($select("nav").offsetHeight+35)+"px)";
+$select("div.main").style.height="calc(100vh - "+($select("nav").offsetHeight)+"px)";

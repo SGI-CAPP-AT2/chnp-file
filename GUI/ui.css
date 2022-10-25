@@ -18,7 +18,7 @@ g-icon{
     -webkit-font-smoothing: antialiased;
     user-select: none;
 }
-*[middle][center]{
+*[middle][center],div.window{
   margin: auto;
 }
 .upload{
@@ -76,10 +76,6 @@ div.main{
 .menuForGlobal{
   border-right: 1px solid black;
 }
-.view{
-  width: calc(100% - 100px);
-  overflow:hidden;
-}
 div.opt{
   display: flex;
   text-align: center;
@@ -87,7 +83,8 @@ div.opt{
   margin: 5px;
 }
 div.view{
-  width: calc(100vh - 50px);
+  width: calc(100vw - 50px);
+  overflow:hidden;
   overflow-y: scroll;
 }
 *::-webkit-scrollbar{
@@ -142,4 +139,38 @@ p.output,p.input{
 div.ui{
   display: flex;
   flex-direction: column;
+}
+div.dynamicInput{
+  position: fixed;
+  top: 100px;
+  left: 50px;
+  width: calc(100vw - 100px);
+  display: flex;
+}
+div.dynamicInput *{
+  margin: 2px;
+}
+div.screenBlock{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  vertical-align: middle;
+  text-align: center;
+}
+div.centerContaint{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+}
+div.centerContaint span{
+  margin: auto;
+}
+div.window{
+  text-align: left;
 }
