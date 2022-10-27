@@ -84,7 +84,7 @@ setUpPage=json=>{
         </div></div>
         <div class="mrg-20"></div>
         `;
-        $select("#index").innerText=current+1;
+        $select("#index").innerText=(current+1)+"/"+chnpObject.getPrintList().length;
         $select(".view").innerHTML=html;
 },state,
 sanitize=str=>str.replaceAll("<","&lt;"),
@@ -108,7 +108,7 @@ printOP=(list)=>{
         })
         sessionStorage.list=i;
         window.location.assign(
-            "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true"
+            "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true&swm=true"
         )
     }
 },
