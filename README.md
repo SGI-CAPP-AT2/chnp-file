@@ -35,6 +35,8 @@ CHNPFILEOBJECT.forInPrintList((i,item)=>{
   */
   console.log(i,item); // READ
   item.title="MY NEW TITLE"; // WRITE
+  return item; // neccessary to keep return statement 
+  // don't keep return item if you want to delete the item
 });
 ```
 ## `CHNPFILEOBJECT.setCurrentTime`
