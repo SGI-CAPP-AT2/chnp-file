@@ -27,7 +27,7 @@
                         drive_file_rename_outline
                     </g-icon>
                 </div>
-                <div onclick = "printOP(chnpObject.getPrintList())" class="opt">
+                <div onclick = "printOP()" class="opt">
                     <g-icon center middle>
                         print
                     </g-icon>
@@ -60,7 +60,7 @@
                         edit
                     </g-icon>
                 </div>
-                <div onclick="printOP([chnpObject.getPrintList()[current]])" class="opt">
+                <div onclick="printOP(current)" class="opt">
                     <g-icon center="" middle="">
                         file_download
                     </g-icon>
@@ -88,6 +88,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="../lib/Emmet.min.js"></script>
     <script src="../lib/API.js"></script>
+    <script src="../lib/printAPI.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

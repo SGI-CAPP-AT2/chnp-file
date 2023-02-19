@@ -100,16 +100,14 @@ previous=()=>{
         setUpPage(chnpObject.getListAt(current));
     }
 },
-printOP=(list)=>{
-    let i = 0;
-    if(list.length!=0){
-        list.forEach(el=>{
-            sessionStorage["l-"+i++]=JSON.stringify(el);
-        })
-        sessionStorage.list=i;
-        window.location.assign(
-            "https://sgi-capp-at2.github.io/code-highlight-n-print/tool/print.html?pb=true&swm=true"
-        )
+printOP=(index=false)=>{
+    if(index==false)
+    {
+        printCHNP(chnpObject.getPrintList())
+    }
+    else
+    {
+        printCHNP([chnpObject.getListAt(index)])
     }
 },
 chnageAllWatermarks=()=>{
