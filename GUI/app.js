@@ -89,16 +89,18 @@ setUpPage=json=>{
 },state,
 sanitize=str=>str.replaceAll("<","&lt;"),
 next=()=>{
-    if(chnpObject.isListAt(current+1)==true&&state!="edit"){
-        current++;
+    if(state!="edit"){
+        current=(current+1)%chnpObject.getCount();
         setUpPage(chnpObject.getListAt(current));
     }
+    return current;
 },
 previous=()=>{
-    if(chnpObject.isListAt(current-1)==true&&state!="edit"){
+    if(state!="edit"){
         current--;
         setUpPage(chnpObject.getListAt(current));
     }
+    return current;
 },
 printOP=(index=false)=>{
     if(index==false)
