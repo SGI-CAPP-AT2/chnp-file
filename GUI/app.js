@@ -212,7 +212,49 @@ saveAtThisState=()=>{
 },
 getObjectString = string =>{
     return window.URL.createObjectURL(new Blob([string],{type:'text/json'}))
-}
+},
+promptPageSetup = () =>
+{
+    let InputList = document.createElement("select");
+    InputList.multiple=true;
+    InputList.innerHTML=`
+    <option selected="${getPBprop()}" value="pb">Page Breaks</option>
+    <option selected="${getWDprop()}" value="wd">Date Mark</option>
+    `;
+    InputList.style.bottom=5+"px";
+    InputList.style.left=5+"px";
+    InputList.style.position="fixed";
+    InputList.click();
+    InputList.onblur=(e)=>
+    {
+        setPrintProps(e);
+    }
+    window.addEventListener("keyup",ev=>
+    {
+        if(ev.key.toLowerCase=="enter")
+        {
+            setPrintProps(InputList);
+        }
+    })
+    document.body.append(InputList);
+},
+setPrintProps=e=>
+{
+    for(var option of e.target.options)
+    {
+        if(option.selected)
+        {
+            sessionStorage[option.value]=true;
+        }
+        else
+        {
+            sessionStorage[option.value]=false;
+        }
+    }
+    e.target.remove();
+},
+getPBprop=()=>sessionStorage.pb,
+getWDprop=()=>sessionStorage.wd;
 ;
 class DynamicInput
 {
