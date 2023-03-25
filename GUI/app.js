@@ -113,7 +113,7 @@ printOP=(index=false)=>{
     }
 },
 chnageAllWatermarks=()=>{
-    let watermarkObject = new DynamicInput("Enter New Watermark ...");
+    let watermarkObject = new DynamicInput("Enter New Watermark ...",chnpObject.getListAt(current).watermark);
     watermarkObject.onDone=(val)=>{
         watermarkObject.destroy();
         chnpObject.setWM(val) 
@@ -186,7 +186,7 @@ editCurrentPage=(button)=>{
     }
 },
 renameSession=()=>{
-    let newNameObj = new DynamicInput("Enter New Session Name");
+    let newNameObj = new DynamicInput("Enter New Session Name",chnpObject.getName());
     newNameObj.onDone=(val)=>{
         chnpObject.renameSession(val);
         newNameObj.destroy();
@@ -258,16 +258,22 @@ getWDprop=()=>sessionStorage.wd;
 ;
 class DynamicInput
 {
-    constructor(param){
+    constructor(param,val){
         if(!$select("div.dynamicInput")){
-            let inputBar = Emmet("div.screenBlock+div.dynamicInput>input.form-control+button.btn.btn-success{done}");
+            let inputBar = Emmet("div.screenBlock+div.dynamicInput>input.form-control+button.btn.btn-success{done}+button.btn.btn-outline-danger{cancel}");
             console.log(inputBar)
             document.body.append(...inputBar);
             this.onDone=val=>{};
             $select("div.dynamicInput input").placeholder=param;
+            $select("div.dynamicInput input").value=val;
             $select("div.dynamicInput input").focus();
-            $select("div.dynamicInput button").onclick=()=>{
+            $select("div.dynamicInput button.btn-success").onclick=()=>
+            {
                 this.onDone($select("div.dynamicInput input").value);
+            }
+            $select("div.dynamicInput button.btn-outline-danger").onclick=()=>
+            {
+                this.destroy();
             }
         }
     }

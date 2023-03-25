@@ -83,7 +83,7 @@ div.opt{
   margin: 5px;
 }
 div.view{
-  width: calc(100vw - 50px);
+  width: calc(100vw - 60px);
   overflow:hidden;
   overflow-y: scroll;
 }
